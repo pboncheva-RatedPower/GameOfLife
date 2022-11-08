@@ -19,7 +19,7 @@ public class CellTest {
     }
 
     @Test
-    public void LiveDiesUnderpopulation() {
+    public void liveDiesUnderpopulation() {
         Cell cell = new Cell(CellState.ALIVE);
         int numberOfAliveNeighbours = 1;
         cell.setState(numberOfAliveNeighbours);
@@ -27,7 +27,7 @@ public class CellTest {
     }
 
     @Test
-    public void LiveSurvivesWithTwo() {
+    public void liveSurvivesWithTwo() {
         Cell cell = new Cell(CellState.ALIVE);
         int numberOfAliveNeighbours = 2;
         cell.setState(numberOfAliveNeighbours);
@@ -35,7 +35,7 @@ public class CellTest {
     }
 
     @Test
-    public void LiveSurvivesWithThree() {
+    public void liveSurvivesWithThree() {
         Cell cell = new Cell(CellState.ALIVE);
         int umberOfAliveNeighbours = 3;
         cell.setState(umberOfAliveNeighbours);
@@ -43,7 +43,7 @@ public class CellTest {
     }
 
     @Test
-    public void LiveDiesOverPopulation() {
+    public void liveDiesOverPopulation() {
         Cell cell = new Cell(CellState.ALIVE);
         int numberOfAliveNeighbours = 4;
         cell.setState(numberOfAliveNeighbours);
@@ -51,7 +51,7 @@ public class CellTest {
     }
 
     @Test
-    public void DeadReproducesWithThree() {
+    public void deadReproducesWithThree() {
         Cell cell = new Cell(CellState.DEAD);
         int numberOfAliveNeighbours = 3;
         cell.setState(numberOfAliveNeighbours);
@@ -60,7 +60,7 @@ public class CellTest {
     }
 
     @Test
-    public void DeadStillDeadWithMoreThanThree() {
+    public void deadStillDeadWithMoreThanThree() {
         Cell cell = new Cell(CellState.DEAD);
         int numberOfAliveNeighbours = 4;
         cell.setState(numberOfAliveNeighbours);
@@ -68,7 +68,7 @@ public class CellTest {
     }
 
     @Test
-    public void DeadStillDeadWithLessThanThree() {
+    public void deadStillDeadWithLessThanThree() {
         Cell cell = new Cell(CellState.DEAD);
         int numberOfAliveNeighbours = 2;
         cell.setState(numberOfAliveNeighbours);
