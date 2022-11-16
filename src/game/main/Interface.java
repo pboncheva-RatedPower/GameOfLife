@@ -1,17 +1,15 @@
 package game.main;
 
-import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 public class Interface {
-
-    private int ch;
     private BoardInitialization preferences;
     private int size;
     private int getUserInput() throws NumberFormatException {
+        int userInput;
         Scanner in = new Scanner(System.in);
-        ch = Integer.parseInt(in.nextLine());
-        return ch;
+        userInput = Integer.parseInt(in.nextLine());
+        return userInput;
     }
     private static BoardInitialization setBoardInitialization(String boardType) {
         switch(BoardInitialization.valueOf(boardType)){
@@ -45,16 +43,19 @@ public class Interface {
     }
     private void startGameSpace(){
         printGameSpace();
-        if(getUserInput()==1){
-            size=8;
+        switch(getUserInput()){
+            case 1:
+                size=8;
+                break;
+            case 2:
+                size=15;
+                break;
+            case 3:
+                size = getUserInput();
+                break;
+            default: throw new IllegalArgumentException();
         }
-        if(getUserInput()==2){
-            size=100;
-        }
-        if(getUserInput()==3){
-            size=getUserInput();
-        }
-        else throw new InvalidParameterException();
+
     }
     private void startGame() {
         BoardState board;

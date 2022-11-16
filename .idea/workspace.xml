@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cec07402-b55b-4461-8633-65569cabddfc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/game/main/BoardInitialization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/main/BoardState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/main/Interface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/main/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameOfLife.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GameOfLife.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/main/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/main/CellState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/CellState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/test/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/test/CellTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/BoardInitialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/BoardInitialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/BoardState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/BoardState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/Interface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +87,7 @@
       <updated>1667908842161</updated>
       <workItem from="1667908843512" duration="17462000" />
       <workItem from="1667983852218" duration="18179000" />
-      <workItem from="1668073925598" duration="58804000" />
+      <workItem from="1668073925598" duration="64799000" />
     </task>
     <task id="LOCAL-00001" summary="Cell class implemented with tests passed.">
       <created>1667934526680</created>
@@ -109,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667934688492</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="New design, ver. 2.0">
+      <created>1668621980726</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621980726</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,7 +141,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cell class implemented with tests passed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cell class implemented with tests passed." />
+    <MESSAGE value="New design, ver. 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="New design, ver. 2.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
