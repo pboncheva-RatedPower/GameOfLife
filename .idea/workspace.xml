@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cec07402-b55b-4461-8633-65569cabddfc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/main/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/main/CellState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/test/CellTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/main/BoardInitialization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/main/BoardState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/main/Interface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/main/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameOfLife.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GameOfLife.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/Cell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/CellState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/CellState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/test/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/test/CellTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
     "last_opened_file_path": "C:/Users/pboncheva/HomemadeCollection",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -56,6 +60,29 @@
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="CellTest.aliveSurvivesWithThree" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GameOfLife" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="game.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="game.test" />
+      <option name="MAIN_CLASS_NAME" value="game.test.CellTest" />
+      <option name="METHOD_NAME" value="aliveSurvivesWithThree" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CellTest.aliveSurvivesWithThree" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,8 +91,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667908842161</updated>
-      <workItem from="1667908843512" duration="14948000" />
+      <workItem from="1667908843512" duration="17462000" />
+      <workItem from="1667983852218" duration="18179000" />
+      <workItem from="1668073925598" duration="58804000" />
     </task>
+    <task id="LOCAL-00001" summary="Cell class implemented with tests passed.">
+      <created>1667934526680</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667934526680</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Cell class implemented with tests passed.">
+      <created>1667934688492</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667934688492</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,5 +137,24 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Cell class implemented with tests passed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cell class implemented with tests passed." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="13" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="neighbours" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

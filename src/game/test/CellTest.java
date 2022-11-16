@@ -1,5 +1,4 @@
 package game.test;
-import game.main.Cell;
 import game.main.CellState;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +18,7 @@ public class CellTest {
     }
 
     @Test
-    public void liveDiesUnderpopulation() {
+    public void aliveDiesUnderpopulation() {
         Cell cell = new Cell(CellState.ALIVE);
         int numberOfAliveNeighbours = 1;
         cell.setState(numberOfAliveNeighbours);
@@ -27,7 +26,7 @@ public class CellTest {
     }
 
     @Test
-    public void liveSurvivesWithTwo() {
+    public void aliveSurvivesWithTwo() {
         Cell cell = new Cell(CellState.ALIVE);
         int numberOfAliveNeighbours = 2;
         cell.setState(numberOfAliveNeighbours);
@@ -35,7 +34,7 @@ public class CellTest {
     }
 
     @Test
-    public void liveSurvivesWithThree() {
+    public void aliveSurvivesWithThree() {
         Cell cell = new Cell(CellState.ALIVE);
         int umberOfAliveNeighbours = 3;
         cell.setState(umberOfAliveNeighbours);
@@ -43,7 +42,7 @@ public class CellTest {
     }
 
     @Test
-    public void liveDiesOverPopulation() {
+    public void aliveDiesOverPopulation() {
         Cell cell = new Cell(CellState.ALIVE);
         int numberOfAliveNeighbours = 4;
         cell.setState(numberOfAliveNeighbours);
