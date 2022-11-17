@@ -21,10 +21,12 @@ public enum BoardInitialization {
         public Map<Position, CellState> getBoardInitialization(int row, int col) {
                 int mapSize = row * col;
                 Map<Position, CellState> lifeMap = new HashMap<>(mapSize);
-                lifeMap.put(new Position(0, 0), CellState.D);
-                lifeMap.put(new Position(0, 1), CellState.D);
-                lifeMap.put(new Position(1, 0), CellState.D);
-                lifeMap.put(new Position(1, 1), CellState.D);
+                lifeMap.put(new Position(0, 0), CellState.A);
+                lifeMap.put(new Position(0, 1), CellState.A);
+                lifeMap.put(new Position(1, 0), CellState.A);
+                lifeMap.put(new Position(2, 3), CellState.A);
+                lifeMap.put(new Position(3, 2), CellState.A);
+                lifeMap.put(new Position(3, 3), CellState.A);
                 return lifeMap;
 
         }

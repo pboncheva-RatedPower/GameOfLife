@@ -27,7 +27,7 @@ public class Interface {
     private void startScreen() {
         System.out.println("Welcome to Game of Life.");
         System.out.println("Please enter the type of the board you want to initialize:");
-        System.out.println("LIFE");
+        System.out.println("BLOCK");
         System.out.println("GLIDER");
         System.out.println("RANDOM");
         System.out.println("PULSAR");
@@ -35,14 +35,14 @@ public class Interface {
         startGameSpace();
         startGame();
             }
-    private void printGameSpace(){
+    private void chooseGameSpace(){
         System.out.println("Please choose a game space: ");
         System.out.println("1. 8x8 ");
         System.out.println("2. 15x15");
         System.out.println("3. Enter a size (ex. for 50x50, enter 50");
     }
     private void startGameSpace(){
-        printGameSpace();
+        chooseGameSpace();
         switch(getUserInput()){
             case 1:
                 size=8;
@@ -77,8 +77,7 @@ public class Interface {
     public Interface(){
         startScreen();
     }
-
-    public void printGeneration(BoardState board, int row, int col){
+    private void printGeneration(BoardState board, int row, int col){
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if(board.getGeneration().containsKey(new Position(i,j))){
