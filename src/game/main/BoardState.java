@@ -6,21 +6,37 @@ import java.util.Map;
 
 public class BoardState {
     private Map<Position, CellState> generation;
-    private int gameSpace;
-    public BoardState(BoardInitialization boardInitialization, int row, int col){
-            this.generation = boardInitialization.getBoardInitialization(row, col);
-            this.gameSpace=row;
+    private final int gameSpaceSize;
+    private int numberOfGenerations;
+
+    public BoardState(BoardInitialization boardInitialization, int row, int col, double probability){
+            this.generation = boardInitialization.getBoardInitialization(row, col, probability);
+            this.gameSpaceSize =row;
     }
 
-    private void calculateNextGeneration(){
+    private Map<Position, CellState> calculateNextGeneration(){
         Map<Position, CellState> nextGeneration = new HashMap<>();
         generation = aliveCellsInGenerationWithNeighbours();
-        for(Position key : generation.keySet()){
-            nextGeneration.put(key, CellState.getCellState(this,key));
-        }
+        put(nextGeneration);
         nextGeneration.values().removeAll(Collections.singleton(CellState.D));
-        generation=nextGeneration;
+        numberOfGenerations++;
+        return generation=nextGeneration;
+        }
+
+
+    private Map<Position, CellState> put(Map<Position,CellState> map) {
+        for (Position key : generation.keySet()) {
+            Map<String, Boolean> isOutOfBoundaries = isOutOfBoundaries(key);
+            if (isOutOfBoundaries.containsValue(true)) {
+                map.put(key, CellState.D);
+            }
+            else {
+                map.put(key, CellState.getCellState(this, key));
+            }
+        }
+        return map;
     }
+
     private Map<Position,CellState> aliveCellsInGeneration(){
         Map<Position,CellState> aliveCells = copyFromGeneration();
         aliveCells.values().removeAll(Collections.singleton(CellState.D));
@@ -30,10 +46,13 @@ public class BoardState {
         Map<Position,CellState> aliveAndTheirNeighbours = new HashMap<>();
         for(Map.Entry<Position, CellState> entry: aliveCellsInGeneration().entrySet()) {
             Position key = entry.getKey();
-            Position[] neighbours = allNeighboursOfTheCell(key);
-            for (Position neighboursKey : neighbours) {
-                aliveAndTheirNeighbours.put(neighboursKey, generation.get(neighboursKey));
-                aliveAndTheirNeighbours.putIfAbsent(neighboursKey, CellState.D);
+            Map<String, Position[]> allNeighbours = allNeighboursOfTheCell(key);
+            for (Map.Entry<String, Position[]> neighbours: allNeighbours.entrySet()){
+                Position[] neighboursKey = neighbours.getValue();
+                for (Position pos : neighboursKey) {
+                    aliveAndTheirNeighbours.put(pos, generation.get(pos));
+                    aliveAndTheirNeighbours.putIfAbsent(pos, CellState.D);
+                }
             }
         }
         return aliveAndTheirNeighbours;
@@ -49,39 +68,88 @@ public class BoardState {
     }
     private int numberOfAliveNeighboursOfTheCell(Position position, Map<Position,CellState> board){
         int countNeighbours =0;
-        Position[] positionsOfNeighbours = allNeighboursOfTheCell(position);
-        for(Position positionOfNeighbour : positionsOfNeighbours){
-                if (board.getOrDefault(positionOfNeighbour,CellState.D).equals(CellState.A)) {
-                    countNeighbours++;
+        Map<String,Position[]> allNeighbours = allNeighboursOfTheCell(position);
+        for(Map.Entry<String, Position[]> positionOfNeighbours: allNeighbours.entrySet()){
+            Position[] positionOfNeighbour = positionOfNeighbours.getValue();
+            for(Position key : positionOfNeighbour) {
+                if (board.getOrDefault(key, CellState.D).equals(CellState.A)) {
+                     countNeighbours++;
                 }
-        }
+            }
+       }
         return countNeighbours;
     }
-    private Position[] allNeighboursOfTheCell(Position position) {
-        return new Position[]{
+
+    private Map<String, Boolean> isOutOfBoundaries(Position position){
+        Map<String, Boolean> outOfBoundaries = new HashMap<>();
+        outOfBoundaries.put("topBoundary", false);
+        outOfBoundaries.put("bottomBoundary", false);
+        outOfBoundaries.put("leftBoundary", false);
+        outOfBoundaries.put("rightBoundary", false);
+
+        if(!allNeighboursOfTheCell(position).containsKey("top")){
+            outOfBoundaries.replace("topBoundary", true);
+        }
+        if(!allNeighboursOfTheCell(position).containsKey("bottom")){
+            outOfBoundaries.replace("bottomBoundary", true);
+        }
+        if(!allNeighboursOfTheCell(position).containsKey("right")){
+            outOfBoundaries.replace("rightBoundary", true);
+        }
+        if(!allNeighboursOfTheCell(position).containsKey("left")){
+            outOfBoundaries.replace("leftBoundary", true);
+        }
+
+        return outOfBoundaries;
+    }
+
+    private Position[] topNeighboursOfTheCell(Position position){
+       return new Position[]{
                 new Position(position.getXCoordinate() - 1, position.getYCoordinate() - 1),
                 new Position(position.getXCoordinate() - 1, position.getYCoordinate()),
                 new Position(position.getXCoordinate() - 1, position.getYCoordinate() + 1),
-                new Position(position.getXCoordinate(), position.getYCoordinate() - 1),
-                new Position(position.getXCoordinate(), position.getYCoordinate() + 1),
+        };
+
+    }
+    private Position[] bottomNeighboursOfTheCell(Position position){
+       return new Position[]{
                 new Position(position.getXCoordinate() + 1, position.getYCoordinate() - 1),
                 new Position(position.getXCoordinate() + 1, position.getYCoordinate()),
-                new Position(position.getXCoordinate() + 1, position.getYCoordinate() + 1)
+                new Position(position.getXCoordinate() + 1, position.getYCoordinate() + 1)};
+    }
+    private  Position[] leftNeighboursOfTheCell(Position position){
+       return new Position[]{
+               new Position(position.getXCoordinate(), position.getYCoordinate() - 1),
+       };
+    }
+    private  Position[] rightNeighboursOfTheCell(Position position){
+        return new Position[]{
+                new Position(position.getXCoordinate(), position.getYCoordinate() + 1)
         };
     }
-    private boolean isOutOfBoundaries(){
+    private Map<String, Position[]> allNeighboursOfTheCell(Position position) {
+        Map<String, Position[]> allNeighbours = new HashMap<>();
+        allNeighbours.put("top", topNeighboursOfTheCell(position));
+        allNeighbours.put("bottom", bottomNeighboursOfTheCell(position));
+        allNeighbours.put("left", leftNeighboursOfTheCell(position));
+        allNeighbours.put("right", rightNeighboursOfTheCell(position));
+        
+        if (position.getXCoordinate() == 0) {
+            allNeighbours.remove("top");
+        }
+        if (position.getXCoordinate() == gameSpaceSize) {
+            allNeighbours.remove("bottom");
+        }
+        if (position.getYCoordinate() == 0) {
+            allNeighbours.remove("left");
+        }
+        if (position.getYCoordinate() == gameSpaceSize) {
+            allNeighbours.remove("right");
+        }
+        return allNeighbours;
+    }
 
-            Position[] positions = generation.keySet().toArray(new Position[generation.size()]);
-            for (Position pos : positions) {
-                if (pos.getYCoordinate() == gameSpace-1 || pos.getXCoordinate() == gameSpace-1) {
-                    return true;
-                }
-            }
-            return false;
-    }
-    public boolean getIsOutOfBoundaries(){
-        return isOutOfBoundaries();
-    }
+
     public Map<Position, CellState> getGeneration(){
         return this.generation;
     }
@@ -89,14 +157,22 @@ public class BoardState {
         return numberOfAliveNeighboursOfTheCell(position, board);
     }
     public Map<Position,CellState> getNextGeneration(){
-        if(isOutOfBoundaries()){
-            System.out.println("No more generations for the defined board space.");
+        return calculateNextGeneration();
+    }
+    public int getNumberOfGenerations(){
+        return numberOfGenerations;
+    }
+    public int getNumberOfAliveCells(){
+        int numberOfAliveCells=0;
+        for(Map.Entry<Position,CellState> entry: generation.entrySet()){
+            if(entry.getValue().equals(CellState.A)){
+                numberOfAliveCells++;
+            }
         }
-        else{
-            calculateNextGeneration();
-        }
-
-        return generation;
+        return numberOfAliveCells;
     }
 
+
 }
+
+

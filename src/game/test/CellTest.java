@@ -1,25 +1,19 @@
 package game.test;
+import game.main.BoardInitialization;
+import game.main.BoardState;
 import game.main.CellState;
+import game.main.Position;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class CellTest {
 
-    @Test
-    public void stateAliveIfAlive() {
-        Cell cell = new Cell(CellState.ALIVE);
-        Assert.assertEquals(CellState.ALIVE, cell.getState());
-    }
+    BoardState board = new BoardState(BoardInitialization.GLIDER, 8,8,0);
 
-    @Test
-    public void stateDeadIfDead() {
-        Cell cell = new Cell(CellState.DEAD);
-        Assert.assertEquals(CellState.DEAD, cell.getState());
-    }
 
     @Test
     public void aliveDiesUnderpopulation() {
-        Cell cell = new Cell(CellState.ALIVE);
+        BoardState board = new BoardState(BoardInitialization.TESTING, 6,6, 0);
         int numberOfAliveNeighbours = 1;
         cell.setState(numberOfAliveNeighbours);
         Assert.assertEquals(CellState.DEAD,cell.getState());

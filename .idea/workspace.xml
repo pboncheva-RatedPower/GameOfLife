@@ -7,7 +7,11 @@
     <list default="true" id="cec07402-b55b-4461-8633-65569cabddfc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/main/BoardInitialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/BoardInitialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/BoardState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/BoardState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/CellState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/CellState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/main/Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/Interface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/test/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/test/CellTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +90,7 @@
       <updated>1667908842161</updated>
       <workItem from="1667908843512" duration="17462000" />
       <workItem from="1667983852218" duration="18179000" />
-      <workItem from="1668073925598" duration="67582000" />
+      <workItem from="1668073925598" duration="116326000" />
     </task>
     <task id="LOCAL-00001" summary="Cell class implemented with tests passed.">
       <created>1667934526680</created>
@@ -116,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668639233618</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="New design, ver. 2.0">
+      <created>1668673522769</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668673522769</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +170,11 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="game.main.BoardState" memberName="generation" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="neighbours" />
