@@ -1,19 +1,18 @@
 package game.main;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Interface {
-    private BoardInitialization preferences;
-    private int size;
-    private double probability=0.1;
-    private int getUserSize() throws NumberFormatException {
+    private BoardInitialization pattern;
+    private int gameSpaceSize;
+    private double probabilityOfLiveCells =0;
+    private int getGameSpaceSize() throws NumberFormatException {
         int userInput;
         Scanner in = new Scanner(System.in);
         userInput = Integer.parseInt(in.nextLine());
         return userInput;
     }
-    private double getUserProbability() throws NumberFormatException {
+    private double getProbabilityForRandom() throws NumberFormatException {
         double userInput;
         Scanner in = new Scanner(System.in);
         userInput = Double.parseDouble(in.nextLine());
@@ -28,7 +27,7 @@ public class Interface {
             default: throw new IllegalArgumentException("The collection that you entered does not exist");
         }
     }
-    private static String getName() {
+    private static String getBoardInitialization() {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
@@ -39,9 +38,9 @@ public class Interface {
         System.out.println("GLIDER");
         System.out.println("RANDOM");
         System.out.println("PULSAR");
-        preferences=BoardInitialization.getBoardInitializationPref(setBoardInitialization(getName().toUpperCase()));
-        if(preferences.equals(BoardInitialization.RANDOM)){
-            startRandom();
+        pattern =BoardInitialization.getBoardInitializationPref(setBoardInitialization(getBoardInitialization().toUpperCase()));
+        if(pattern.equals(BoardInitialization.RANDOM)){
+            enterProbabilityForRandom();
         }
         startGameSpace();
         startGame();
@@ -50,49 +49,46 @@ public class Interface {
         System.out.println("Please choose a game space: ");
         System.out.println("1. 8x8 ");
         System.out.println("2. 15x15");
-        System.out.println("3. Enter a size (ex. for 50x50, enter 50");
+        System.out.println("3. Enter a size (ex. for 50x50, enter 50)");
     }
-    private void startRandom(){
+    private void enterProbabilityForRandom(){
         System.out.println("Enter probability of live cells (ex. 0.2 for 20%).");
-        probability= getUserProbability();
+        probabilityOfLiveCells = getProbabilityForRandom();
     }
     private void startGameSpace(){
         chooseGameSpace();
-        switch(getUserSize()){
+        switch(getGameSpaceSize()){
             case 1:
-                size=8;
+                gameSpaceSize =8;
                 break;
             case 2:
-                size=15;
+                gameSpaceSize =15;
                 break;
             case 3:
-                size = getUserSize();
+                gameSpaceSize = getGameSpaceSize();
                 break;
             default: throw new IllegalArgumentException();
         }
 
     }
     private void startGame() {
-        BoardState board = new BoardState(preferences, size, size, probability);
-        printGeneration(board,size,size);
+        BoardState board = new BoardState(pattern, gameSpaceSize, gameSpaceSize, probabilityOfLiveCells);
+        printGameOfLifeBoard(board, gameSpaceSize, gameSpaceSize);
         String name;
 
         do {
             System.out.println("Do you want to print next generation? [Y/N]");
-             name = getName();
+             name = getBoardInitialization();
             if (name.equals("Y")) {
                 board.getNextGeneration();
-                printGeneration(board,size,size);
+                printGameOfLifeBoard(board, gameSpaceSize, gameSpaceSize);
             }
             else break;
         }while(!board.getGeneration().isEmpty());
 
     }
-    public Interface(){
-        startScreen();
-    }
-    private void printGeneration(BoardState board, int row, int col){
-        System.out.println("Generation number: " + board.getNumberOfGenerations() + " with "
+    private void printGameOfLifeBoard(BoardState board, int row, int col){
+        System.out.println("Generation number " + board.getNumberOfGenerations() + " with "
                 + board.getNumberOfAliveCells() + " alive cells.");
         System.out.println();
         for (int i = 0; i < row; i++) {
@@ -111,5 +107,7 @@ public class Interface {
         }
         System.out.println();
     }
-
+    public Interface(){
+        startScreen();
+    }
 }

@@ -61,14 +61,6 @@ public enum BoardInitialization {
 
             return lifeMap;
         }
-    },
-    TESTING() {
-        @Override
-        public Map<Position, CellState> getBoardInitialization(int row, int col, double probability) {
-            Map<Position, CellState> lifeMap = new HashMap<>();
-            lifeMap.put(new Position(0,0), CellState.A);
-            return lifeMap;
-        }
     };
 
 
@@ -88,5 +80,6 @@ public enum BoardInitialization {
                 throw new IllegalArgumentException();
         }
     }
+
 
 }

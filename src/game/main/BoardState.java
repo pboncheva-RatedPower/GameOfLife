@@ -17,24 +17,24 @@ public class BoardState {
     private Map<Position, CellState> calculateNextGeneration(){
         Map<Position, CellState> nextGeneration = new HashMap<>();
         generation = aliveCellsInGenerationWithNeighbours();
-        put(nextGeneration);
+        modifiedPut(nextGeneration);
         nextGeneration.values().removeAll(Collections.singleton(CellState.D));
         numberOfGenerations++;
-        return generation=nextGeneration;
+        generation=nextGeneration;
+        return generation;
         }
 
-
-    private Map<Position, CellState> put(Map<Position,CellState> map) {
+    private Map<Position, CellState> modifiedPut(Map<Position,CellState> nextGeneration) {
         for (Position key : generation.keySet()) {
             Map<String, Boolean> isOutOfBoundaries = isOutOfBoundaries(key);
             if (isOutOfBoundaries.containsValue(true)) {
-                map.put(key, CellState.D);
+                nextGeneration.put(key, CellState.D);
             }
             else {
-                map.put(key, CellState.getCellState(this, key));
+                nextGeneration.put(key, CellState.getCellState(this, key));
             }
         }
-        return map;
+        return nextGeneration;
     }
 
     private Map<Position,CellState> aliveCellsInGeneration(){
@@ -79,7 +79,6 @@ public class BoardState {
        }
         return countNeighbours;
     }
-
     private Map<String, Boolean> isOutOfBoundaries(Position position){
         Map<String, Boolean> outOfBoundaries = new HashMap<>();
         outOfBoundaries.put("topBoundary", false);
@@ -102,7 +101,6 @@ public class BoardState {
 
         return outOfBoundaries;
     }
-
     private Position[] topNeighboursOfTheCell(Position position){
        return new Position[]{
                 new Position(position.getXCoordinate() - 1, position.getYCoordinate() - 1),
@@ -148,8 +146,6 @@ public class BoardState {
         }
         return allNeighbours;
     }
-
-
     public Map<Position, CellState> getGeneration(){
         return this.generation;
     }
